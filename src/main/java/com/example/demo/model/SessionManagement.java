@@ -1,11 +1,12 @@
 package com.example.demo.model;
 
-import java.util.ArrayList;
-import java.util.List;
+
+import java.util.*;
 
 public class SessionManagement {
 
 	public static List<Session> sessions = new ArrayList<>();
+	
 
 	public static String add(String connectionString) {
 		Session session = new Session(connectionString);
@@ -13,4 +14,12 @@ public class SessionManagement {
 		return session.uuid.toString();
 	}
 
+	public static String find(String uiud) {
+		for (Session s : sessions) {
+			if (s.getUuid().equals(UUID.fromString(uiud))) {
+				return s.getConnectionString();
+			}
+		}
+		return null;
+	}
 }
